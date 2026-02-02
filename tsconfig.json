@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/layout.js", "app/page.js", "components/convex-client-provider.jsx", "app/ConvexClientProvider.jsx", "convex/schema.js", "components/ui/button.jsx", "components/ui/card.jsx", "components/ui/dialog.jsx", "components/ui/dropdown-menu.jsx", "components/ui/input.jsx", "components/ui/label.jsx", "components/ui/select.jsx", "components/ui/slider.jsx", "components/ui/sonner.jsx", "components/ui/tabs.jsx", "components/ui/textarea.jsx"  ],
+, "app/layout.js", "app/page.js", "components/convex-client-provider.jsx", "app/ConvexClientProvider.jsx", "convex/schema.js", "components/ui/button.jsx", "components/ui/card.jsx", "components/ui/dialog.jsx", "components/ui/dropdown-menu.jsx", "components/ui/input.jsx", "components/ui/label.jsx", "components/ui/select.jsx", "components/ui/slider.jsx", "components/ui/sonner.jsx", "components/ui/tabs.jsx", "components/ui/textarea.jsx", "middlewares.js", "app/(auth)/sign-in/[[...sign-in]]/page.jsx", "app/(auth)/sign-up/[[...sign-up]]/page.jsx", "lib/utils.js", "next.config.mjs"  ],
   "exclude": ["node_modules"]
 }
