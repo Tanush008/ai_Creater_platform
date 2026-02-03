@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -113,6 +112,7 @@ export default function PostEditorContent({
       } else {
         toast.error(result.error);
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error(`Failed to ${type} content. Please try again.`);
     } finally {
