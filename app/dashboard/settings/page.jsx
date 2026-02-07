@@ -16,9 +16,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { User, Loader2, AlertCircle } from "lucide-react";
-import { api } from "../../convex/_generated/api";
-import { useConvexQuery, useConvexMutation } from "@/hooks/use-convex-query";
+
 import { toast } from "sonner";
+import { useConvexMutation, useConvexQuery } from "../../hooks/use-convex-query";
+import { api } from "../../../convex/_generated/api";
 
 const usernameSchema = z.object({
   username: z

@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import ImageKit from "imagekit";
 import { auth } from "@clerk/nextjs/server";
@@ -13,7 +12,9 @@ const imagekit = new ImageKit({
 export async function POST(request) {
   try {
     // Verify authentication
+    // console.log(userId + "dfasf");
     const { userId } = await auth();
+
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -62,7 +63,7 @@ export async function POST(request) {
         error: "Failed to upload image",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

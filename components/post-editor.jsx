@@ -5,13 +5,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { api } from "../../convex/_generated/api";
-import { useConvexMutation } from "../../hooks/use-convex-query";
 import PostEditorHeader from "./post-editor-header";
-import PostEditorContent from "./post-editor-content";
 import PostEditorSettings from "./post-editor-settings";
-import ImageUploadModal from "./image-upload-modal";
-import z from "zod";
+import PostEditorContent from "./post-editor-content";
+import ImageUploadModal from "./image-upload-model";
+import { api } from "../convex/_generated/api";
+import { useConvexMutation } from "../app/hooks/use-convex-query";
+import { z } from "zod";
 
 const postSchema = z.object({
   title: z.string().min(1, "Title is required").max(200, "Title too long"),

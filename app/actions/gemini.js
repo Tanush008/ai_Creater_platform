@@ -1,9 +1,9 @@
-
 "use server";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// console.log(process.env.GEMINI_API_KEY+"_____dfasdf");
 
 export async function generateBlogContent(title, category = "", tags = []) {
   try {
@@ -11,7 +11,7 @@ export async function generateBlogContent(title, category = "", tags = []) {
       throw new Error("Title is required to generate content");
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     // Create a detailed prompt for blog content generation
     const prompt = `
@@ -77,14 +77,14 @@ Start directly with the introduction paragraph.
 
 export async function improveContent(
   currentContent,
-  improvementType = "enhance"
+  improvementType = "enhance",
 ) {
   try {
     if (!currentContent || currentContent.trim().length === 0) {
       throw new Error("Content is required for improvement");
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     let prompt = "";
 

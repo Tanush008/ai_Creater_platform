@@ -14,13 +14,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { PlusCircle, Search, Filter, FileText } from "lucide-react";
-import { api } from "../../convex/_generated/api";
-
 import { toast } from "sonner";
 import Link from "next/link";
 import PostCard from "@/components/post-card";
 import { useConvexMutation } from "../../hooks/use-convex-query";
 import { useConvexQuery } from "../../hooks/use-convex-query";
+import { api } from "../../../convex/_generated/api";
 
 export default function PostsPage() {
   const router = useRouter();

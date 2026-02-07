@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 // import { useStoreUser } from "@/hooks/use-store-user";
@@ -12,8 +12,7 @@ import { Authenticated, Unauthenticated } from "convex/react";
 import Image from "next/image";
 
 export default function Header() {
-    // const { isLoading, isAuthenticated } = useStoreUser();
-    const { isLoading, isAuthenticated } =useStoreUser();
+    const { isLoading, isAuthenticated } = useStoreUser();
     const path = usePathname();
     const router = useRouter();
 
@@ -38,6 +37,7 @@ export default function Header() {
         <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-3xl px-4">
             {/* Center - Glass Navigation Container */}
             <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-4 sm:px-6 md:px-8 py-3 flex items-center justify-between gap-2">
+                {/* Logo */}
                 <Link href={isAuthenticated ? "/feed" : "/"} className="flex-shrink-0">
                     <Image
                         src="/logo.png"
@@ -48,7 +48,7 @@ export default function Header() {
                     />
                 </Link>
 
-                 {/* Navigation for landing page only - Hidden on mobile to save space */}
+                {/* Navigation for landing page only - Hidden on mobile to save space */}
                 {path === "/" && (
                     <div className="hidden lg:flex space-x-6 flex-1 justify-center">
                         <Link
@@ -64,7 +64,8 @@ export default function Header() {
                             Testimonials
                         </Link>
                     </div>
-                )} 
+                )}
+
                 {/* Auth Actions */}
                 <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                     <Authenticated>
@@ -87,30 +88,30 @@ export default function Header() {
                                     userPreviewMainIdentifier: "font-semibold text-white",
                                 },
                             }}
-                        // afterSignOutUrl="/"
+                            afterSignOutUrl="/"
                         />
                     </Authenticated>
 
                     <Unauthenticated>
                         <SignInButton>
-                            <Button variant="glass" className="" size="sm">
+                            <Button variant="glass" className="hover:cursor-pointer" size="sm">
                                 Sign In
                             </Button>
                         </SignInButton>
 
                         <SignUpButton>
-                            <Button variant="primary" size="sm" className="whitespace-nowrap">
+                            <Button variant="primary" size="sm" className="whitespace-nowrap hover:cursor-pointer">
                                 Get Started
                             </Button>
                         </SignUpButton>
                     </Unauthenticated>
                 </div>
 
-
-                <div className="fixed bottom-0 left-0 w-full z-40 flex justify-center">
-                    <BarLoader width={"95%"} color="#D8B4FE" />
-                </div>
-
+                {isLoading && (
+                    <div className="fixed bottom-0 left-0 w-full z-40 flex justify-center">
+                        <BarLoader width={"95%"} color="#D8B4FE" />
+                    </div>
+                )}
             </div>
         </header>
     );

@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { ImageIcon, Sparkles, Wand2, Plus, Minus } from "lucide-react";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
-import { generateBlogContent, improveContent } from "@/app/actions/gemini";
 import { BarLoader } from "react-spinners";
+import { generateBlogContent, improveContent } from "../app/actions/gemini";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
@@ -33,7 +33,7 @@ const quillConfig = {
         ],
         ["image", "video"],
       ],
-      handlers: { image: function () {} },
+      handlers: { image: function () { } },
     },
   },
   formats: [
@@ -112,7 +112,7 @@ export default function PostEditorContent({
       } else {
         toast.error(result.error);
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error(`Failed to ${type} content. Please try again.`);
     } finally {
@@ -122,8 +122,20 @@ export default function PostEditorContent({
   };
 
   const hasTitle = watchedValues.title?.trim();
-  const hasContent =
-    watchedValues.content && watchedValues.content !== "<p><br></p>";
+  
+  // Check for all possible "empty" states from ReactQuill
+  const isContentEmpty = (content) => {
+    if (!content) return true;
+    const stripped = content
+      .replace(/<p><br><\/p>/g, "")
+      .replace(/<p><\/p>/g, "")
+      .replace(/<br>/g, "")
+      .replace(/\s/g, "")
+      .trim();
+    return stripped === "";
+  };
+  
+  const hasContent = !isContentEmpty(watchedValues.content);
 
   return (
     <>
@@ -200,17 +212,17 @@ export default function PostEditorContent({
             ) : (
               <div className="grid grid-cols-3 w-full gap-2">
                 {[
-                  { type: "enhance", icon: Sparkles, color: "green" },
-                  { type: "expand", icon: Plus, color: "blue" },
-                  { type: "simplify", icon: Minus, color: "orange" },
-                ].map(({ type, icon: Icon, color }) => (
+                  { type: "enhance", icon: Sparkles, className: "border-green-500 text-green-400 hover:bg-green-500 hover:text-white" },
+                  { type: "expand", icon: Plus, className: "border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white" },
+                  { type: "simplify", icon: Minus, className: "border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white" },
+                ].map(({ type, icon: Icon, className }) => (
                   <Button
                     key={type}
                     onClick={() => handleAI("improve", type)}
                     disabled={isGenerating || isImproving}
                     variant="outline"
                     size="sm"
-                    className={`border-${color}-500 text-${color}-400 hover:bg-${color}-500 hover:text-white disabled:opacity-50`}
+                    className={`${className} disabled:opacity-50`}
                   >
                     <Icon className="h-4 w-4 mr-2" />
                     AI {type.charAt(0).toUpperCase() + type.slice(1)}

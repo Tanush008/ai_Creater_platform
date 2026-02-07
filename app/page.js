@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,11 +8,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
-import { features } from "@/data/features";
-import { platformTabs } from "@/data/platform-tabs";
-import { socialProofStats } from "@/data/social-proof-stats";
-import { testimonials } from "@/data/testimonials";
 import { Badge } from "@/components/ui/badge";
+import {features} from "@/lib/data";
+import {platformTabs} from "@/lib/data";
+import {socialProofStats} from "@/lib/data";
+import {testimonials} from "@/lib/data";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
